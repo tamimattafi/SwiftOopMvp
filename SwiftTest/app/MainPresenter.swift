@@ -54,7 +54,9 @@ class MainPresenter : MainPresenterProtocol {
             view.showMessage(message: "We will not be able to reach the target!")
             return false
         } else if ((chaserSpeed - targetSpeed) >= 0.0 && distance <= 0.0) || distance <= 0.0 {
+            view.showMessage(message: "Remaining Distance: 0 miters \nChaser ~ Target")
             view.showMessage(message: "We got the target!")
+            view.showMessage(message: "Target: x_x")
             return false
         } else if (targetSpeed - chaserSpeed) >= 0.0 && distance > 0.0  {
             view.showMessage(message: "We will not be able to reach the target!")
@@ -62,7 +64,7 @@ class MainPresenter : MainPresenterProtocol {
         } else {
             let reachIn: Double = distance / (chaserSpeed - targetSpeed)
             view.showMessage(message: "The target will be reached in \(String(format: "%.2f", reachIn)) seconds")
-            view.showMessage(message: "Remaining Distance: \(distance) \nChaser \(getDistanceRoute(distance: distance)) Target")
+            view.showMessage(message: "Remaining Distance: \(distance) miters \nChaser \(getDistanceRoute(distance: distance)) Target")
             return true
         }
     }
@@ -71,7 +73,7 @@ class MainPresenter : MainPresenterProtocol {
         var tempDistance = distance
         var route = ""
         while tempDistance > 0.0 {
-            route += "_"
+            route += " -> "
             tempDistance -= 1
         }
         return route
